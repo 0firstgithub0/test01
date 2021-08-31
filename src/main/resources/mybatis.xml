@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--settings: 控制mybatis全局行为-->
+  <!--  <settings>
+        &lt;!&ndash;设置mybatis输出日志&ndash;&gt;
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>-->
+    <!--环境配置 数据库的连接信息
+    default 必须和某个environment的id值一样
+    告诉mybatis使用哪个数据库的连接信息 也就是访问哪个数据库
+    -->
+    <!--设置别名-->
+    <typeAliases>
+        <!--name 实体类为所在包名-->
+        <package name="com.nanhang.settings.domain"/>
+        <package name="com.nanhang.workbench.domain"/>
+    </typeAliases>
+    <!--settings: 控制mybatis全局行为-->
+
+    <!--sql mapper（SQL映射文件的位置）-->
+    <mappers>
+        <!--一个mapper标签指定一个文件的位置
+               从类路径开始的路径信息。  target/classes（类路径）
+        -->
+        <!--找SQL语句执行的配置文件"com/dao/StudentDao.xml-->
+        <!--<mapper resource="com/dao/StudentDao.xml"/>-->
+        <!--name 所在包名  所有的mapper.xml一次加载-->
+
+        <package name="com.nanhang.settings.dao"/>
+        <package name="com.nanhang.workbench.dao"/>
+    </mappers>
+</configuration>
+        <!--
+mybatis主配置文件 定义了数据库的配置信息 SQL映射的位置-->

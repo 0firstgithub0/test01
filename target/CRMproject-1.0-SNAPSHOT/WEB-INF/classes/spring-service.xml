@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:comtext="http://www.springframework.org/schema/context"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--  http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">-->
+
+<!--对service层的注解扫描-->
+   <context:component-scan base-package="com.nanhang.settings.service.impl"/>
+    <context:component-scan base-package="com.nanhang.workbench.service.impl"/>
+<!--对事务的声明创建事务-->
+
+    <!--2.将我们的所有业务类,注入到spring,可以通过配置,或者注解实现
+       <bean id="BookServiceImpl" class="com.kuang.service.imp.BookServiceImpl">
+           <property name="bookMapper" ref="bookMapper" />
+       </bean>-->
+
+  <!--  &lt;!&ndash;3.声明式事务配置&ndash;&gt;
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+
+        &lt;!&ndash;注入数据源&ndash;&gt;
+        &lt;!&ndash;<property name="dataSource" ref="dataSource"/>&ndash;&gt;
+        <property name="dataSource" ref="dateSoruce"/>
+
+    </bean>-->
+    <!--注册事务注解驱动-->
+ <!--   <tx:annotation-driven transaction-manager="transactionManager" />-->
+
+
+
+ <!-- &lt;!&ndash;  &lt;!&ndash;&lt;!&ndash;1.扫描service下的包,注意,不能与springmvc的组件扫描器进行合并&ndash;&gt;&ndash;&gt;
+    <context:component-scan base-package="com.bjpowernode.settings.service.impl" />
+    <context:component-scan base-package="com.bjpowernode.workbench.service.impl" />
+
+   &lt;!&ndash; &lt;!&ndash;2.将我们的所有业务类,注入到spring,可以通过配置,或者注解实现&ndash;&gt;
+    <bean id="BookServiceImpl" class="com.kuang.service.imp.BookServiceImpl">
+        <property name="bookMapper" ref="bookMapper" />
+    </bean>
+
+   &lt;!&ndash; &lt;!&ndash;3.声明式事务配置&ndash;&gt;&ndash;&gt;
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      &lt;!&ndash;  &lt;!&ndash;注入数据源&ndash;&gt;&ndash;&gt;
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+   &lt;!&ndash; &lt;!&ndash;注册事务注解驱动&ndash;&gt;&ndash;&gt;
+    <tx:annotation-driven transaction-manager="transactionManager" />-->
+
+<!--   &lt;!&ndash;4.aop事务支持!&ndash;&gt;
+    &lt;!&ndash;结合aop实现事务的植入&ndash;&gt;
+    &lt;!&ndash;配置事务通知;&ndash;&gt;
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        &lt;!&ndash;给哪些方法配置事务&ndash;&gt;
+        &lt;!&ndash;配置事务的传播特性: new propagation=&ndash;&gt;
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    &lt;!&ndash;配置事务切入&ndash;&gt;
+    <aop:config>
+        <aop:pointcut id="txPointCut" expression="execution(* com.bjpowernode.*.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut" />
+    </aop:config>-->
+
+</beans>
